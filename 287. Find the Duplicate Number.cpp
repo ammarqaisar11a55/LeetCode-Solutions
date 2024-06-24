@@ -15,3 +15,25 @@ public:
         return -1;
     }
 };
+
+//************************************************************** */
+
+
+class Solution
+{
+public:
+    int findDuplicate(vector<int> &nums)
+    {
+        unordered_set<int>N;
+
+        for (int i = 0; i < nums.size(); i++)
+        {
+            if(N.find(nums[i])!=N.end()){
+                return nums[i];
+            }else N.insert(nums[i]);
+        }
+
+        return 1;
+        
+    }
+};
