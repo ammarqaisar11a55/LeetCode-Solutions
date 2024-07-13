@@ -42,3 +42,29 @@ public:
         return head;
     }
 };
+
+//
+
+class Solution
+{
+public:
+    ListNode *reverseList(ListNode *head)
+    {
+        if(head==NULL)
+            return NULL;
+
+        ListNode* Prev = NULL;
+        ListNode* Current = head;
+        ListNode* Forward = Current->next;
+
+        while(Current!=NULL)
+        {
+            Forward = Current -> next;
+            Current -> next = Prev;
+            Prev = Current;
+            Current = Forward;
+        }
+
+        return Prev;
+    }
+};
