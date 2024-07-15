@@ -8,6 +8,8 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
+//Approach 1:
 class Solution
 {
 public:
@@ -43,7 +45,7 @@ public:
     }
 };
 
-//
+//Approach 2:
 
 class Solution
 {
