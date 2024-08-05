@@ -42,3 +42,30 @@ public:
             return "";
     }
 };
+
+class Solution
+{
+public:
+    string kthDistinct(vector<string> &arr, int k)
+    {
+
+        unordered_map<string, int> strings;
+        int count = 0;
+
+        for (auto x : arr)
+            strings[x]++;
+
+        for (string x : arr)
+        {
+            if (strings[x] == 1)
+            {
+                count++;
+            }
+
+            if (count == k)
+                return x;
+        }
+
+        return "";
+    }
+};
