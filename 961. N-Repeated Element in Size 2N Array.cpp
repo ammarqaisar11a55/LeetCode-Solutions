@@ -24,3 +24,24 @@ public:
         return -1;
     }
 };
+
+class Solution
+{
+public:
+    int repeatedNTimes(vector<int> &nums)
+    {
+
+        unordered_map<int, int> Freq;
+
+        for (auto x : nums)
+            Freq[x]++;
+
+        for (auto x : Freq)
+        {
+            if (x.second == nums.size() / 2)
+                return x.first;
+        }
+
+        return -1;
+    }
+};
