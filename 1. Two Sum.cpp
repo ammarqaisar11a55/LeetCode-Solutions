@@ -20,3 +20,27 @@ public:
         return {};
     }
 };
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        
+        unordered_map<int,int>Mp;
+        
+        
+        for(int i = 0; i < nums.size(); i++)
+        {
+            int diff = target - nums[i];
+            
+            if(Mp.find(diff)!=Mp.end())
+            {
+                return {i,Mp[diff]};
+            }
+            
+            Mp[nums[i]] = i;
+        }
+        
+        return {};
+        
+    }
+};
