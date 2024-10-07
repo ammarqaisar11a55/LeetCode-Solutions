@@ -33,3 +33,43 @@ public:
         return ans;
     }
 };
+
+class Solution
+{
+public:
+    int equalPairs(vector<vector<int>> &grid)
+    {
+
+        unordered_map<string, int> Mp;
+
+        for (int i = 0; i < grid.size(); i++)
+        {
+            string row;
+            for (int j = 0; j < grid[i].size(); j++)
+            {
+                string digit = to_string(grid[i][j]);
+                row += digit;
+                row += ' ';
+            }
+
+            Mp[row]++;
+        }
+        int ans = 0;
+
+        for (int i = 0; i < grid.size(); i++)
+        {
+            string Col;
+            for (int j = 0; j < grid[i].size(); j++)
+            {
+                string digit = to_string(grid[j][i]);
+                Col += digit;
+                Col += ' ';
+            }
+
+            if (Mp.find(Col) != Mp.end())
+                ans += Mp[Col];
+        }
+
+        return ans;
+    }
+};
