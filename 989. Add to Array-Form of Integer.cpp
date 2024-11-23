@@ -45,3 +45,42 @@ public:
         return res;
     }
 };
+
+//**************Approach 2:***********************/
+
+class Solution
+{
+public:
+    void Solve(vector<int> &N1, int &N2, int carry, vector<int> &res)
+    {
+        if (N1.empty() && N2 == 0 && carry == 0)
+        {
+            return;
+        }
+
+        int Sum = carry;
+
+        if (N1.empty() == false)
+        {
+            Sum += N1.back();
+            N1.pop_back();
+        }
+
+        if (N2 != 0)
+        {
+            Sum += N2 % 10;
+            N2 /= 10;
+        }
+
+        Solve(N1, N2, Sum / 10, res);
+        res.push_back(Sum % 10);
+    }
+
+    vector<int> addToArrayForm(vector<int> &num, int k)
+    {
+
+        vector<int> res;
+        Solve(num, k, 0, res);
+        return res;
+    }
+};
