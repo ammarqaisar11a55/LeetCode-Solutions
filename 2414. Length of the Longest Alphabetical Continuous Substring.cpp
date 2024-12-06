@@ -35,3 +35,39 @@ public:
         return Longest_Length;
     }
 };
+
+class Solution {
+public:
+    int longestContinuousSubstring(string s) {
+        
+    string alphabets = "abcdefghijklmnopqrstuvwxyz";
+    unordered_map<char,int>mp;
+
+    for(int i = 0; i < alphabets.size(); i++)
+    {
+        mp[alphabets[i]] = i;
+    }
+
+    int Longest_Length = 0;
+    int temp_count = 1;
+
+    for(int i = 1; i < s.length(); i++)
+    {
+        if(mp[s[i]] - mp[s[i-1]] == 1)
+        {
+            temp_count++;
+        }
+        else
+        {
+            Longest_Length = max(Longest_Length,temp_count);
+            temp_count = 1;
+        }
+    }
+
+    Longest_Length = max(Longest_Length,temp_count);
+
+
+    return Longest_Length;
+        
+    }
+};
