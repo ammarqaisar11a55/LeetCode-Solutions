@@ -1,5 +1,5 @@
 /*
-    Approach 1: Brute Force (Time Limit Exceed) 
+    Approach 1: Brute Force (Time Limit Exceed)
 */
 
 class Solution
@@ -32,5 +32,27 @@ public:
 };
 
 /*
-    Approach 2: Brute Force (Time Limit Exceed) 
+    Approach 2:
 */
+
+class Solution
+{
+public:
+    int maxConsecutive(int bottom, int top, vector<int> &special)
+    {
+
+        sort(special.begin(), special.end());
+
+        int Ans = 0;
+
+        for (int i = 1; i < special.size(); i++)
+        {
+            Ans = max(Ans, special[i] - special[i - 1] - 1);
+        }
+
+        Ans = max(Ans, special[0] - bottom);
+        Ans = max(Ans, top - special.back());
+
+        return Ans;
+    }
+};
