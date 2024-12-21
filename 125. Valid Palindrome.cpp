@@ -150,3 +150,34 @@ public:
         return true;
     }
 };
+
+/*Recursive Approach: */
+
+class Solution
+{
+public:
+    bool ans(string &s, int st, int en)
+    {
+        if (st > en)
+        {
+            return true;
+        }
+
+        if (!isalnum(s[st]))
+        {
+            return ans(s, st + 1, en);
+        }
+
+        if (!isalnum(s[en]))
+        {
+            return ans(s, st, en - 1);
+        }
+
+        return tolower(s[st]) != tolower(s[en]) ? false : ans(s, st + 1, en - 1);
+    }
+
+    bool isPalindrome(string s)
+    {
+        return ans(s, 0, s.length() - 1);
+    }
+};
