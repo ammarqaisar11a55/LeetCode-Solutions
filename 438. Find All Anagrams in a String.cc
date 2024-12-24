@@ -40,3 +40,43 @@ public:
         return res;
     }
 };
+
+class Solution
+{
+public:
+    vector<int> findAnagrams(string s, string p)
+    {
+        vector<int> res;
+        unordered_map<char, int> Given_P_Map, Window_Map;
+
+        for (char c : p)
+            Given_P_Map[c]++;
+
+        for (int i = 0; i < p.length(); i++)
+        {
+            Window_Map[s[i]]++;
+        }
+
+        if (Window_Map == Given_P_Map)
+        {
+            res.push_back(0);
+        }
+
+        for (int i = p.length(); i < s.length(); i++)
+        {
+            Window_Map[s[i]]++;
+
+            Window_Map[s[i - p.length()]]--;
+
+            if (Window_Map[s[i - p.length()]] == 0)
+            {
+                Window_Map.erase(s[i - p.length()]);
+            }
+
+            if (Window_Map == Given_P_Map)
+                res.push_back(i - p.length() + 1);
+        }
+
+        return res;
+    }
+};
