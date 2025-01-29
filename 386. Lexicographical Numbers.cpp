@@ -43,3 +43,33 @@ public:
 
 
 /*Approach 2: Iterative Approach:*/
+
+class Solution {
+public:
+    vector<int> lexicalOrder(int n) {
+        vector<int> Res;
+
+    int Current_Number = 1;
+
+    for(int i = 0; i < n; i++)
+    {
+        Res.push_back(Current_Number);
+
+        if(Current_Number*10 <= n)
+        {
+            Current_Number*=10;
+        }
+        else
+        {
+            while(Current_Number%10 == 9 || Current_Number >= n)
+            {
+                Current_Number /= 10;
+            }
+
+            Current_Number++;
+        }
+    }
+
+    return Res;   
+    }
+};
