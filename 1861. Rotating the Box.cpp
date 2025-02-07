@@ -1,6 +1,5 @@
 /*Brute Force:*/
 
-
 class Solution
 {
 public:
@@ -36,6 +35,48 @@ public:
             for (int j = 0; j < Res[i].size(); j++)
             {
                 Res[i][j] = box[box.size() - j - 1][i];
+            }
+        }
+
+        return Res;
+    }
+};
+
+/*Optimized Solution*/
+
+class Solution
+{
+public:
+    vector<vector<char>> rotateTheBox(vector<vector<char>> &box)
+    {
+
+        vector<vector<char>> Res(box[0].size(), vector<char>(box.size()));
+
+        for (int i = 0; i < Res.size(); i++)
+        {
+            for (int j = 0; j < Res[i].size(); j++)
+            {
+                Res[i][j] = box[box.size() - j - 1][i];
+            }
+        }
+
+        int total_rows = Res.size();
+        int total_cols = Res[0].size();
+
+        for (int i = 0; i < total_cols; i++)
+        {
+            int Current_Col_Empty_Cell = total_rows - 1;
+
+            for (int j = total_rows - 1; j >= 0; j--)
+            {
+                if (Res[j][i] == '#')
+                {
+                    swap(Res[j][i], Res[Current_Col_Empty_Cell--][i]);
+                }
+                else if (Res[j][i] == '*')
+                {
+                    Current_Col_Empty_Cell = j - 1;
+                }
             }
         }
 
