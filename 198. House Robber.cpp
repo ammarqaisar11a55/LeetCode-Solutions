@@ -54,3 +54,62 @@ public:
         return Solve(nums, 0);
     }
 };
+
+/*Bottom-Up Tabulation Approach:*/
+
+class Solution
+{
+public:
+    int rob(vector<int> &nums)
+    {
+        int n = nums.size();
+
+        if (n == 1)
+        {
+            return nums[0];
+        }
+
+        vector<int> Dp(n, 0);
+
+        Dp[0] = nums[0];
+        Dp[1] = max(Dp[0], nums[1]);
+
+        for (int i = 2; i < n; i++)
+        {
+            Dp[i] = max(Dp[i - 1], Dp[i - 2] + nums[i]);
+        }
+
+        return Dp[n - 1];
+    }
+};
+
+/*Constant Approach:*/
+
+class Solution
+{
+public:
+    int rob(vector<int> &nums)
+    {
+        int n = nums.size();
+
+        if (n == 1)
+        {
+            return nums[0];
+        }
+
+        int BeforePrevious = nums[0];
+        int Previous = max(nums[0], nums[1]);
+
+        int res = Previous;
+
+        for (int i = 2; i < n; i++)
+        {
+            res = max(Previous, BeforePrevious + nums[i]);
+
+            BeforePrevious = Previous;
+            Previous = res;
+        }
+
+        return res;
+    }
+};
